@@ -3,8 +3,6 @@ require_relative './lib/account'
 require_relative './lib/organization'
 require 'json'
 
-# org, *children = ARGV
-
 class InputOrg
 
   attr_accessor :org, :child
@@ -37,10 +35,18 @@ class InputOrg
   end
 
   def flatten
+    puts "==self child is #{self.child.nil?}=="
     if check_whether_child_is_subsidiary.all?
       format_org_with_subsidiary
     else
       format_org
+    end
+  end
+
+  def write_datastructure_to_file(input)
+    data = input
+    File.open("datastructure.txt","a") do |f|
+      f.puts "\r" + data
     end
   end
 
@@ -62,16 +68,16 @@ class InputOrg
   end
 
   def check_whether_child_is_subsidiary
-    self.child.map {|c| c.type == "subsidiary" ? true : false }
+    self.child.map {|c| c.type == "subsidiary" ? true : false } unless self.child.nil? || false
   end
 
 end
 
-io = InputOrg.new(4,26,37)
-io.create_org
-io.create_children
-puts io.flatten
-data = io.inspect.to_json
-File.open("datastructure.txt","a") do |f|
-  f.puts "\r" + data
-end
+# io = InputOrg.new(4,26,37)
+# io.create_org
+# io.create_children
+# puts io.flatten
+# data = io.inspect.to_json
+# File.open("datastructure.txt","a") do |f|
+#   f.puts "\r" + data
+# end

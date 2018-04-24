@@ -5,3 +5,4 @@ require_relative '../lib/organization'
 require 'minitest/autorun'
 require 'minitest/pride'
 require 'webmock/minitest'
+
