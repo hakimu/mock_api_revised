@@ -26,10 +26,7 @@ end.parse!
 
 raise OptionParser::MissingArgument.new("Searching by organization (-o, --organization=organization) is mandatory") if options[:organization].nil?
 
-# puts options
 org = options[:organization].to_i
-# Need to fix for only passing in one child argument
-# child_1, child_2 = options[:child].map(&:to_i)
 
 if options[:child] == nil
   io = InputOrg.new(org)

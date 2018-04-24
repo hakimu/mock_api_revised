@@ -35,7 +35,6 @@ class InputOrg
   end
 
   def flatten
-    puts "==self child is #{self.child.nil?}=="
     if check_whether_child_is_subsidiary.all?
       format_org_with_subsidiary
     else
